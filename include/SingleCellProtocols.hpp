@@ -56,6 +56,14 @@ namespace alevin{
       void setFeatureStart(size_t startIdx) { featureStart = startIdx; }
     };
 
+    struct SciSeq : Rule{
+      SciSeq(): Rule(10, 8, BarcodeEnd::FIVE, 4294967295){}
+    };
+
+    struct SnareSeq : Rule{
+      SnareSeq(): Rule(24, 10, BarcodeEnd::FIVE, 4294967295){}
+    };
+
     struct ChromiumV3 : Rule{
       ChromiumV3(): Rule(16, 12, BarcodeEnd::FIVE, 4294967295){}
     };

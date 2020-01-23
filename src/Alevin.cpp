@@ -984,6 +984,8 @@ salmon-based processing of single-cell RNA-seq data.
     bool dropseq = vm["dropseq"].as<bool>();
     bool indrop = vm["indrop"].as<bool>();
     bool citeseq = vm["citeseq"].as<bool>();
+    bool sciseq = vm["sciseq"].as<bool>();
+    bool snareseq = vm["snareseq"].as<bool>();
     bool chromV3 = vm["chromiumV3"].as<bool>();
     bool chrom = vm["chromium"].as<bool>();
     bool gemcode = vm["gemcode"].as<bool>();
@@ -998,6 +1000,8 @@ salmon-based processing of single-cell RNA-seq data.
     if (dropseq) validate_num_protocols += 1;
     if (indrop) validate_num_protocols += 1;
     if (citeseq) { validate_num_protocols += 1; noTgMap = true;}
+    if (sciseq) validate_num_protocols += 1;
+    if (snareseq) validate_num_protocols += 1;
     if (chromV3) validate_num_protocols += 1;
     if (chrom) validate_num_protocols += 1;
     if (gemcode) validate_num_protocols += 1;
@@ -1068,6 +1072,20 @@ salmon-based processing of single-cell RNA-seq data.
         fmt::print(stderr, "ERROR: citeseq needs featureStart and featureLength flag too.\n Exiting Now");
         exit(1);
       }
+    }
+    else if(sciseq){
+      AlevinOpts<apt::SnareSeq> aopt;
+      //aopt.jointLog->warn("Using SNARE-Seq Setting for Alevin");
+      initiatePipeline(aopt, sopt, orderedOptions,
+                       vm, commentString, noTgMap,
+                       barcodeFiles, readFiles);
+    }
+    else if(sciseq){
+      AlevinOpts<apt::SciSeq> aopt;
+      //aopt.jointLog->warn("Using sci-Seq Setting for Alevin");
+      initiatePipeline(aopt, sopt, orderedOptions,
+                       vm, commentString, noTgMap,
+                       barcodeFiles, readFiles);
     }
     else if(chromV3){
       AlevinOpts<apt::ChromiumV3> aopt;

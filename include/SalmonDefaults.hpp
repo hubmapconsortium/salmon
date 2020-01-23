@@ -133,6 +133,8 @@ namespace defaults {
   constexpr const bool isDropseq{false};
   constexpr const bool isChromium{false};
   constexpr const bool isChromiumV3{false};
+  constexpr const bool isSciSeq{false};
+  constexpr const bool isSnareSeq{false};
   constexpr const bool isInDrop{false};
   constexpr const bool isGemcode{false};
   constexpr const bool isCITESeq{false};

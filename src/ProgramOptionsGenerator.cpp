@@ -381,6 +381,12 @@ namespace salmon {
        "dropseq", po::bool_switch()->default_value(alevin::defaults::isDropseq),
        "Use DropSeq Single Cell protocol for the library")
       (
+       "sciseq", po::bool_switch()->default_value(alevin::defaults::isSciSeq),
+       "Use sci-Seq Single Cell protocol for the library.")
+      (
+       "snareseq", po::bool_switch()->default_value(alevin::defaults::isSnareSeq),
+       "Use SNARE-Seq2 Single Cell protocol for the library.")
+      (
        "chromiumV3", po::bool_switch()->default_value(alevin::defaults::isChromiumV3),
        "Use 10x chromium v3 Single Cell protocol for the library.")
       (
