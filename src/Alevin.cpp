@@ -1074,15 +1074,15 @@ salmon-based processing of single-cell RNA-seq data.
       }
     }
     else if(sciseq){
-      AlevinOpts<apt::SnareSeq> aopt;
-      //aopt.jointLog->warn("Using SNARE-Seq Setting for Alevin");
+      AlevinOpts<apt::SciSeq> aopt;
+      //aopt.jointLog->warn("Using sci-Seq Setting for Alevin");
       initiatePipeline(aopt, sopt, orderedOptions,
                        vm, commentString, noTgMap,
                        barcodeFiles, readFiles);
     }
-    else if(sciseq){
-      AlevinOpts<apt::SciSeq> aopt;
-      //aopt.jointLog->warn("Using sci-Seq Setting for Alevin");
+    else if(snareseq){
+      AlevinOpts<apt::SnareSeq> aopt;
+      //aopt.jointLog->warn("Using SNARE-Seq Setting for Alevin");
       initiatePipeline(aopt, sopt, orderedOptions,
                        vm, commentString, noTgMap,
                        barcodeFiles, readFiles);

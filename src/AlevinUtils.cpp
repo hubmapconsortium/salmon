@@ -192,6 +192,24 @@ namespace alevin {
         nonstd::optional<std::string>(read.substr(0, pt.barcodeLength)) : nonstd::nullopt;
     }
     template <>
+    nonstd::optional<std::string> extractBarcode<apt::SciSeq>(std::string& read,
+                                                                  apt::SciSeq& pt){
+      return (read.length() >= pt.barcodeLength) ?
+             nonstd::optional<std::string>(read.substr(0, pt.barcodeLength)) : nonstd::nullopt;
+      //return (read.length() >= pt.barcodeLength) ? (bc.append(read.data(), pt.barcodeLength), true) : false;
+      //bc = read.substr(0, pt.barcodeLength);
+      //return true;
+    }
+    template <>
+    nonstd::optional<std::string> extractBarcode<apt::SnareSeq>(std::string& read,
+                                                                  apt::SnareSeq& pt){
+      return (read.length() >= pt.barcodeLength) ?
+             nonstd::optional<std::string>(read.substr(0, pt.barcodeLength)) : nonstd::nullopt;
+      //return (read.length() >= pt.barcodeLength) ? (bc.append(read.data(), pt.barcodeLength), true) : false;
+      //bc = read.substr(0, pt.barcodeLength);
+      //return true;
+    }
+    template <>
     nonstd::optional<std::string> extractBarcode<apt::ChromiumV3>(std::string& read,
                                                                   apt::ChromiumV3& pt){
       return (read.length() >= pt.barcodeLength) ?
