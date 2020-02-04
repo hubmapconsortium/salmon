@@ -6,7 +6,7 @@ MAINTAINER salmon.maintainer@gmail.com
 
 ENV PACKAGES git gcc make g++ libboost-all-dev liblzma-dev libbz2-dev \
     ca-certificates zlib1g-dev libcurl4-openssl-dev curl unzip autoconf apt-transport-https ca-certificates gnupg software-properties-common wget
-ENV SALMON_VERSION 1.3.0
+ENV SALMON_VERSION 1.3.0-hbm
 
 # salmon binary will be installed in /home/salmon/bin/salmon
 
@@ -31,9 +31,8 @@ RUN apt-get install kitware-archive-keyring
 
 RUN apt-get install -y cmake
 
-RUN curl -k -L https://github.com/COMBINE-lab/salmon/archive/v${SALMON_VERSION}.tar.gz -o salmon-v${SALMON_VERSION}.tar.gz && \
-    tar xzf salmon-v${SALMON_VERSION}.tar.gz && \
-    cd salmon-${SALMON_VERSION} && \
+COPY . /home/salmon-${SALMON_VERSION}
+RUN cd salmon-${SALMON_VERSION} && \
     mkdir build && \
     cd build && \
     cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local && make && make install
