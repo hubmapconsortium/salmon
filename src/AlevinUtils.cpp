@@ -115,6 +115,18 @@ namespace alevin {
                                   std::string& umi){
       umi = read.substr(pt.barcodeLength, pt.umiLength);
       return true;
+    bool extractUMI<apt::SciSeq>(std::string& read,
+                                   apt::SciSeq& pt,
+                                   std::string& umi){
+        umi = read.substr(pt.barcodeLength, pt.umiLength);
+        return true;
+    }
+    template <>
+    bool extractUMI<apt::SnareSeq>(std::string& read,
+                                   apt::SnareSeq& pt,
+                                   std::string& umi){
+        umi = read.substr(pt.barcodeLength, pt.umiLength);
+        return true;
     }
     template <>
     bool extractUMI<apt::Chromium>(std::string& read,
@@ -907,6 +919,14 @@ namespace alevin {
                            boost::program_options::variables_map& vm);
     template
     bool processAlevinOpts(AlevinOpts<apt::InDrop>& aopt,
+                           SalmonOpts& sopt, bool noTgMap,
+                           boost::program_options::variables_map& vm);
+    template
+    bool processAlevinOpts(AlevinOpts<apt::SciSeq>& aopt,
+                           SalmonOpts& sopt, bool noTgMap,
+                           boost::program_options::variables_map& vm);
+    template
+    bool processAlevinOpts(AlevinOpts<apt::SnareSeq>& aopt,
                            SalmonOpts& sopt, bool noTgMap,
                            boost::program_options::variables_map& vm);
     template
