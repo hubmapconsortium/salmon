@@ -115,6 +115,8 @@ namespace alevin {
                                   std::string& umi){
       umi = read.substr(pt.barcodeLength, pt.umiLength);
       return true;
+    }
+    template <>
     bool extractUMI<apt::SciSeq>(std::string& read,
                                    apt::SciSeq& pt,
                                    std::string& umi){
