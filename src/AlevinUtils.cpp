@@ -54,6 +54,18 @@ namespace alevin {
       subseq = seq;
     }
     template <>
+    void getReadSequence(apt::SciSeq& protocol,
+                         std::string& seq,
+                         std::string& subseq){
+      subseq = seq;
+    }
+    template <>
+    void getReadSequence(apt::SnareSeq& protocol,
+                         std::string& seq,
+                         std::string& subseq){
+      subseq = seq;
+    }
+    template <>
     void getReadSequence(apt::Chromium& protocol,
                          std::string& seq,
                          std::string& subseq){
