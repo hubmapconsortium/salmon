@@ -57,7 +57,7 @@ namespace alevin{
     };
 
     struct SciSeq : Rule{
-      SciSeq(): Rule(10, 8, BarcodeEnd::FIVE, 4294967295){}
+      SciSeq(): Rule(30, 8, BarcodeEnd::FIVE, 4294967295){}
     };
 
     struct SnareSeq : Rule{
