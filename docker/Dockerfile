@@ -35,7 +35,7 @@ COPY . /home/salmon-${SALMON_VERSION}
 RUN cd salmon-${SALMON_VERSION} && \
     mkdir build && \
     cd build && \
-    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local && make && make install
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local && make -j6 && make install
 
 # For dev version
 #RUN git clone https://github.com/COMBINE-lab/salmon.git && \
