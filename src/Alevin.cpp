@@ -986,6 +986,7 @@ salmon-based processing of single-cell RNA-seq data.
     bool citeseq = vm["citeseq"].as<bool>();
     bool sciseq = vm["sciseq"].as<bool>();
     bool snareseq = vm["snareseq"].as<bool>();
+    bool slideseq = vm["slideseq"].as<bool>();
     bool chromV3 = vm["chromiumV3"].as<bool>();
     bool chrom = vm["chromium"].as<bool>();
     bool gemcode = vm["gemcode"].as<bool>();
@@ -1002,6 +1003,7 @@ salmon-based processing of single-cell RNA-seq data.
     if (citeseq) { validate_num_protocols += 1; noTgMap = true;}
     if (sciseq) validate_num_protocols += 1;
     if (snareseq) validate_num_protocols += 1;
+    if (slideseq) validate_num_protocols += 1;
     if (chromV3) validate_num_protocols += 1;
     if (chrom) validate_num_protocols += 1;
     if (gemcode) validate_num_protocols += 1;
@@ -1083,6 +1085,13 @@ salmon-based processing of single-cell RNA-seq data.
     else if(snareseq){
       AlevinOpts<apt::SnareSeq> aopt;
       //aopt.jointLog->warn("Using SNARE-Seq Setting for Alevin");
+      initiatePipeline(aopt, sopt, orderedOptions,
+                       vm, commentString, noTgMap,
+                       barcodeFiles, readFiles);
+    }
+    else if(slideseq){
+      AlevinOpts<apt::SlideSeq> aopt;
+      //aopt.jointLog->warn("Using SLIDE-Seq Setting for Alevin");
       initiatePipeline(aopt, sopt, orderedOptions,
                        vm, commentString, noTgMap,
                        barcodeFiles, readFiles);

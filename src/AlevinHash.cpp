@@ -286,6 +286,10 @@ int salmonHashQuantify(AlevinOpts<apt::SnareSeq>& aopt,
                        bfs::path& outputDirectory,
                        CFreqMapT& freqCounter);
 template
+int salmonHashQuantify(AlevinOpts<apt::SlideSeq>& aopt,
+                       bfs::path& outputDirectory,
+                       CFreqMapT& freqCounter);
+template
 int salmonHashQuantify(AlevinOpts<apt::ChromiumV3>& aopt,
                        bfs::path& outputDirectory,
                        CFreqMapT& freqCounter);

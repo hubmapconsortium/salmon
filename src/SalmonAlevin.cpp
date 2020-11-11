@@ -1483,6 +1483,16 @@ int alevinQuant(AlevinOpts<apt::SnareSeq>& aopt,
                 CFreqMapT& freqCounter,
                 size_t numLowConfidentBarcode);
 template
+int alevinQuant(AlevinOpts<apt::SlideSeq>& aopt,
+                SalmonOpts& sopt,
+                SoftMapT& barcodeMap,
+                TrueBcsT& trueBarcodes,
+                spp::sparse_hash_map<uint32_t, uint32_t>& txpToGeneMap,
+                spp::sparse_hash_map<std::string, uint32_t>& geneIdxMap,
+                boost::program_options::parsed_options& orderedOptions,
+                CFreqMapT& freqCounter,
+                size_t numLowConfidentBarcode);
+template
 int alevinQuant(AlevinOpts<apt::ChromiumV3>& aopt,
                 SalmonOpts& sopt,
                 SoftMapT& barcodeMap,

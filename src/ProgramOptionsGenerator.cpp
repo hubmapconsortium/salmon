@@ -387,6 +387,9 @@ namespace salmon {
        "snareseq", po::bool_switch()->default_value(alevin::defaults::isSnareSeq),
        "Use SNARE-Seq2 Single Cell protocol for the library.")
       (
+        "slideseq", po::bool_switch()->default_value(alevin::defaults::isSlideSeq),
+        "Use Slide-Seq Single Cell protocol for the library.")
+      (
        "chromiumV3", po::bool_switch()->default_value(alevin::defaults::isChromiumV3),
        "Use 10x chromium v3 Single Cell protocol for the library.")
       (

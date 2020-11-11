@@ -66,6 +66,12 @@ namespace alevin {
       subseq = seq;
     }
     template <>
+    void getReadSequence(apt::SlideSeq& protocol,
+                         std::string& seq,
+                         std::string& subseq){
+      subseq = seq;
+    }
+    template <>
     void getReadSequence(apt::Chromium& protocol,
                          std::string& seq,
                          std::string& subseq){
@@ -141,6 +147,13 @@ namespace alevin {
                                    std::string& umi){
         umi = read.substr(pt.barcodeLength, pt.umiLength);
         return true;
+    }
+    template <>
+    bool extractUMI<apt::SlideSeq>(std::string& read,
+                                   apt::SlideSeq& pt,
+                                   std::string& umi){
+      umi = read.substr(32, pt.umiLength);
+      return true;
     }
     template <>
     bool extractUMI<apt::Chromium>(std::string& read,
@@ -232,6 +245,17 @@ namespace alevin {
       return (read.length() >= pt.barcodeLength) ?
              nonstd::optional<std::string>(
                      read.substr(0, pt.barcodeLength)
+             ) : nonstd::nullopt;
+      //return (read.length() >= pt.barcodeLength) ? (bc.append(read.data(), pt.barcodeLength), true) : false;
+      //bc = read.substr(0, pt.barcodeLength);
+      //return true;
+    }
+    template <>
+    nonstd::optional<std::string> extractBarcode<apt::SlideSeq>(std::string& read,
+                                                                apt::SlideSeq& pt){
+      return (read.length() >= 32) ?
+             nonstd::optional<std::string>(
+                 read.substr(0, 8) + read.substr(26, 6)
              ) : nonstd::nullopt;
       //return (read.length() >= pt.barcodeLength) ? (bc.append(read.data(), pt.barcodeLength), true) : false;
       //bc = read.substr(0, pt.barcodeLength);
@@ -943,6 +967,10 @@ namespace alevin {
                            boost::program_options::variables_map& vm);
     template
     bool processAlevinOpts(AlevinOpts<apt::SnareSeq>& aopt,
+                           SalmonOpts& sopt, bool noTgMap,
+                           boost::program_options::variables_map& vm);
+    template
+    bool processAlevinOpts(AlevinOpts<apt::SlideSeq>& aopt,
                            SalmonOpts& sopt, bool noTgMap,
                            boost::program_options::variables_map& vm);
     template
