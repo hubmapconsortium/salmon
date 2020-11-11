@@ -29,3 +29,6 @@
 
 # Emacs save files
 *~
+
+# Generated files
+include/SalmonVersion.hpp

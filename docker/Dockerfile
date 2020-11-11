@@ -15,7 +15,6 @@ ENV SALMON_VERSION 1.3.0-hbm
 WORKDIR /home
 
 RUN apt-get update && \
-    apt remove -y libcurl4 && \
     apt-get install -y --no-install-recommends ${PACKAGES} && \
     apt-get clean
 
@@ -33,6 +32,7 @@ RUN apt-get install -y cmake
 
 COPY . /home/salmon-${SALMON_VERSION}
 RUN cd salmon-${SALMON_VERSION} && \
+    python3 scripts/write_git_version.py && \
     mkdir build && \
     cd build && \
     cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local && make -j6 && make install
@@ -47,6 +47,4 @@ RUN cd salmon-${SALMON_VERSION} && \
 
 ENV PATH /home/salmon-${SALMON_VERSION}/bin:${PATH}
 ENV LD_LIBRARY_PATH "/usr/local/lib:${LD_LIBRARY_PATH}"
-
-RUN echo "export PATH=$PATH" > /etc/environment
-RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" > /etc/environment
+ENV SALMON_NO_VERSION_CHECK 1
