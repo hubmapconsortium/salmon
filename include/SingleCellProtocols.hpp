@@ -65,7 +65,7 @@ namespace alevin{
     };
 
     struct SlideSeq : Rule{
-      SlideSeq(): Rule(14, 8, BarcodeEnd::FIVE, 4294967295){}
+      SlideSeq(): Rule(14, 9, BarcodeEnd::FIVE, 4294967295){}
     };
 
     struct ChromiumV3 : Rule{
