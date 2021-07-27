@@ -428,7 +428,10 @@ void sampleTrueBarcodes(const std::vector<uint32_t>& freqCounter,
   aopt.kneeCutoff = topxBarcodes;
   size_t totalUsableBarcodes = lowRegionNumBarcodes + topxBarcodes + 1;
   if (totalUsableBarcodes > freqCounter.size()) {
-    size_t offset = freqCounter.size() - topxBarcodes - 1;
+    size_t offset = freqCounter.size() - topxBarcodes;
+    if (offset > 0) {
+      offset--;
+    }
     lowRegionNumBarcodes = offset;
   }
   topxBarcodes += lowRegionNumBarcodes;
