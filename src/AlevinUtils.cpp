@@ -138,7 +138,7 @@ namespace alevin {
     bool extractUMI<apt::SciSeq>(std::string& read,
                                    apt::SciSeq& pt,
                                    std::string& umi){
-        umi = read.substr(pt.barcodeLength, pt.umiLength);
+        umi = read.substr(0, pt.umiLength);
         return true;
     }
     template <>
@@ -233,8 +233,10 @@ namespace alevin {
     template <>
     nonstd::optional<std::string> extractBarcode<apt::SciSeq>(std::string& read,
                                                                   apt::SciSeq& pt){
-      return (read.length() >= pt.barcodeLength) ?
-             nonstd::optional<std::string>(read.substr(0, pt.barcodeLength)) : nonstd::nullopt;
+      return (read.length() >= (pt.barcodeLength + pt.umiLength - 1)) ?
+             nonstd::optional<std::string>(
+                 read.substr(pt.umiLength, read.length())
+             ) : nonstd::nullopt;
       //return (read.length() >= pt.barcodeLength) ? (bc.append(read.data(), pt.barcodeLength), true) : false;
       //bc = read.substr(0, pt.barcodeLength);
       //return true;
